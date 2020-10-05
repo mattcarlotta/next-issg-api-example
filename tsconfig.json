@@ -9,7 +9,7 @@
     "isolatedModules": true,
     "module": "commonjs",
     "moduleResolution": "node",
-    "noEmit": true,
+    "noEmit": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "outDir": "dist",
@@ -32,6 +32,6 @@
       "~utils/*": ["utils/*"]
     }
   },
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": ["**/*.ts"],
   "exclude": ["node_modules", "e2e", "dist"]
 }
