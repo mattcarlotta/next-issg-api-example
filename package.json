@@ -1,0 +1,92 @@
+{
+  "name": "next-issg-api-example",
+  "version": "0.0.1",
+  "description": "An example of how to intregate iSSG with an API.",
+  "repository": "https://github.com/mattcarlotta/next-issg-api-example",
+  "author": "Matt Carlotta",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "build": "inStaging=false tsc -p",
+    "dev": "NODE_ENV=development nodemon",
+    "drop:dev": "NODE_ENV=development EXIT=true DROP=true node ./database/teardownDB/index.js",
+    "drop:prod": "NODE_ENV=production EXIT=true DROP=true node ./database/teardownDB/index.js",
+    "drop:stage": "NODE_ENV=staging EXIT=true DROP=true node ./database/teardownDB/index.js",
+    "lint": "eslint -c ./.eslintrc --ignore-path ./.eslintignore ./src --ext .ts,.tsx",
+    "seed:dev": "NODE_ENV=development EXIT=true SEED=true node ./database/seedDB/index.js",
+    "seed:prod": "NODE_ENV=production EXIT=true SEED=true node ./database/seedDB/index.js",
+    "seed:stage": "NODE_ENV=staging EXIT=true SEED=true node ./database/seedDB/index.js",
+    "start": "NODE_ENV=production next start -p 8080",
+    "test": "NODE_ENV=test jest --config ./jest.json --passWithNoTests",
+    "test:cov": "NODE_ENV=test jest --config ./jest.json --coverage",
+    "test:e2e": "NODE_ENV=staging cypress open --project ./e2e",
+    "test:e2erun": "npm run build:stage && concurrently --success first --kill-others \"npm run start\" \"NODE_ENV=production cypress run --config video=false --project ./e2e\"",
+    "test:failed": "NODE_ENV=test jest --config ./jest.json --watch --onlyFailures",
+    "test:prod": "npm run build:prod && npm run start",
+    "test:stage": "NODE_ENV=production inStaging=true next build && npm run staging",
+    "test:watch": "NODE_ENV=test jest --config ./jest.json --watch --onlyChanged",
+    "test:watchall": "NODE_ENV=test jest --config ./jest.json --watchAll"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "npm run lint",
+      "npm run test"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "dependencies": {
+    "@types/compression": "^1.7.0",
+    "@types/cors": "^2.8.7",
+    "@types/morgan": "^1.9.1",
+    "bluebird": "^3.7.2",
+    "body-parser": "^1.19.0",
+    "chalk": "^4.1.0",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "lodash.get": "^4.4.2",
+    "lodash.isempty": "^4.4.0",
+    "mongoose": "^5.10.7",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@types/bluebird": "^3.5.32",
+    "@types/express": "^4.17.8",
+    "@types/jest": "^26.0.14",
+    "@types/jsdom": "^16.2.4",
+    "@types/lodash.get": "^4.4.6",
+    "@types/lodash.isempty": "^4.4.6",
+    "@types/mongoose": "^5.7.36",
+    "@typescript-eslint/eslint-plugin": "^4.3.0",
+    "@typescript-eslint/parser": "^4.3.0",
+    "address": "^1.1.2",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^26.3.0",
+    "browserslist": "^4.14.5",
+    "cypress": "^5.3.0",
+    "enzyme": "^3.11.0",
+    "eslint": "^7.10.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "^24.0.2",
+    "eslint-watch": "^7.0.0",
+    "husky": "^4.3.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^26.4.2",
+    "jest-haste-map": "^26.3.0",
+    "jest-resolve": "^26.4.0",
+    "jsdom": "^16.4.0",
+    "lint-staged": "^10.4.0",
+    "nodemon": "^2.0.4",
+    "prettier": "^2.1.2",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.3"
+  }
+}

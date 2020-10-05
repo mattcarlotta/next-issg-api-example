@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "allowJs": true,
+    "alwaysStrict": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "outDir": "dist",
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "es5",
+    "paths": {
+      "~env": ["env/index"],
+      "~logger": ["logger/index"],
+      "~types": ["types/index"],
+      "~controllers/*": ["controllers/*"],
+      "~database/*": ["database/*"],
+      "~database": ["database/index"],
+      "~models": ["models/index"],
+      "~middlewares": ["middlewares/index"],
+      "~models/*": ["models/*"],
+      "~routes/*": ["routes/*"],
+      "~routes": ["routes/index"],
+      "~utils/*": ["utils/*"]
+    }
+  },
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules", "e2e", "dist"]
+}
